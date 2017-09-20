@@ -1,0 +1,76 @@
+    subreddits.append(reddit.subreddit('meme_battles'))
+    subreddits.append(reddit.subreddit('interactivememes'))
+    subreddits.append(reddit.subreddit('memes'))
+    subreddits.append(reddit.subreddit('memeeconomy'))
+    subreddits.append(reddit.subreddit('meirl'))
+    subreddits.append(reddit.subreddit('madlads'))
+    subreddits.append(reddit.subreddit('patrig'))
+    subreddits.append(reddit.subreddit('deepfriedmemes'))
+    subreddits.append(reddit.subreddit('dank_gifs'))
+    subreddits.append(reddit.subreddit('anime_irl'))
+    subreddits.append(reddit.subreddit('2meirl4meirl'))
+    subreddits.append(reddit.subreddit('absolutelynotme_irl'))
+    subreddits.append(reddit.subreddit('hmmm'))
+    subreddits.append(reddit.subreddit('shittywholesomememes'))
+    subreddits.append(reddit.subreddit('unexpectedlywholesome'))
+    subreddits.append(reddit.subreddit('wholesomegames'))
+    subreddits.append(reddit.subreddit('wholesomegreentext'))
+    subreddits.append(reddit.subreddit('surrealmemes'))
+    subreddits.append(reddit.subreddit('kenm'))
+    if message.content.startswith('!meme_battles'):
+	await client.send_message(message.channel, await get_top_reddit_meme_battles())
+    if message.content.startswith('!interactivememes'):
+	await client.send_message(message.channel, await get_top_reddit_interactivememes())
+    if message.content.startswith('!memes'):
+	await client.send_message(message.channel, await get_top_reddit_memes())
+    if message.content.startswith('!memeeconomy'):
+	await client.send_message(message.channel, await get_top_reddit_memeeconomy())
+    if message.content.startswith('!meirl'):
+	await client.send_message(message.channel, await get_top_reddit_meirl())
+    if message.content.startswith('!madlads'):
+	await client.send_message(message.channel, await get_top_reddit_madlads())
+    if message.content.startswith('!patrig'):
+	await client.send_message(message.channel, await get_top_reddit_patrig())
+    if message.content.startswith('!deepfriedmemes'):
+	await client.send_message(message.channel, await get_top_reddit_deepfriedmemes())
+    if message.content.startswith('!dank_gifs'):
+	await client.send_message(message.channel, await get_top_reddit_dank_gifs())
+    if message.content.startswith('!anime_irl'):
+	await client.send_message(message.channel, await get_top_reddit_anime_irl())
+    if message.content.startswith('!2meirl4meirl'):
+	await client.send_message(message.channel, await get_top_reddit_2meirl4meirl())
+    if message.content.startswith('!absolutelynotme_irl'):
+	await client.send_message(message.channel, await get_top_reddit_absolutelynotme_irl())
+    if message.content.startswith('!hmmm'):
+	await client.send_message(message.channel, await get_top_reddit_hmmm())
+    if message.content.startswith('!shittywholesomememes'):
+	await client.send_message(message.channel, await get_top_reddit_shittywholesomememes())
+    if message.content.startswith('!unexpectedlywholesome'):
+	await client.send_message(message.channel, await get_top_reddit_unexpectedlywholesome())
+    if message.content.startswith('!wholesomegames'):
+	await client.send_message(message.channel, await get_top_reddit_wholesomegames())
+    if message.content.startswith('!wholesomegreentext'):
+	await client.send_message(message.channel, await get_top_reddit_wholesomegreentext())
+    if message.content.startswith('!surrealmemes'):
+	await client.send_message(message.channel, await get_top_reddit_surrealmemes())
+    if message.content.startswith('!kenm'):
+	await client.send_message(message.channel, await get_top_reddit_kenm())
+!meme_battles: Posts top of r/meme_battles\n!interactivememes: Posts top of r/interactivememes\n!memes: Posts top of r/memes\n!memeeconomy: Posts top of r/memeeconomy\n!meirl: Posts top of r/meirl\n!madlads: Posts top of r/madlads\n!patrig: Posts top of r/patrig\n!deepfriedmemes: Posts top of r/deepfriedmemes\n!dank_gifs: Posts top of r/dank_gifs\n!anime_irl: Posts top of r/anime_irl\n!2meirl4meirl: Posts top of r/2meirl4meirl\n!absolutelynotme_irl: Posts top of r/absolutelynotme_irl\n!hmmm: Posts top of r/hmmm\n!shittywholesomememes: Posts top of r/shittywholesomememes\n!unexpectedlywholesome: Posts top of r/unexpectedlywholesome\n!wholesomegames: Posts top of r/wholesomegames\n!wholesomegreentext: Posts top of r/wholesomegreentext\n!surrealmemes: Posts top of r/surrealmemes\n!kenm: Posts top of r/kenm\nget_top_reddit_meme_battles= generatedsubredditcode.get_top_reddit_meme_battles
+get_top_reddit_interactivememes= generatedsubredditcode.get_top_reddit_interactivememes
+get_top_reddit_memes= generatedsubredditcode.get_top_reddit_memes
+get_top_reddit_memeeconomy= generatedsubredditcode.get_top_reddit_memeeconomy
+get_top_reddit_meirl= generatedsubredditcode.get_top_reddit_meirl
+get_top_reddit_madlads= generatedsubredditcode.get_top_reddit_madlads
+get_top_reddit_patrig= generatedsubredditcode.get_top_reddit_patrig
+get_top_reddit_deepfriedmemes= generatedsubredditcode.get_top_reddit_deepfriedmemes
+get_top_reddit_dank_gifs= generatedsubredditcode.get_top_reddit_dank_gifs
+get_top_reddit_anime_irl= generatedsubredditcode.get_top_reddit_anime_irl
+get_top_reddit_2meirl4meirl= generatedsubredditcode.get_top_reddit_2meirl4meirl
+get_top_reddit_absolutelynotme_irl= generatedsubredditcode.get_top_reddit_absolutelynotme_irl
+get_top_reddit_hmmm= generatedsubredditcode.get_top_reddit_hmmm
+get_top_reddit_shittywholesomememes= generatedsubredditcode.get_top_reddit_shittywholesomememes
+get_top_reddit_unexpectedlywholesome= generatedsubredditcode.get_top_reddit_unexpectedlywholesome
+get_top_reddit_wholesomegames= generatedsubredditcode.get_top_reddit_wholesomegames
+get_top_reddit_wholesomegreentext= generatedsubredditcode.get_top_reddit_wholesomegreentext
+get_top_reddit_surrealmemes= generatedsubredditcode.get_top_reddit_surrealmemes
+get_top_reddit_kenm= generatedsubredditcode.get_top_reddit_kenm
