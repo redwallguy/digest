@@ -31,7 +31,7 @@ def postToImgur(urls):
 
         for key in urls:
             try:
-                imgurclient.upload_from_url(urls[key], {"album":deletehash,"description":key})
+                imgurclient.upload_from_url(urls[key][0], {"album":deletehash,"description":urls[key][1] + "\n-" +key})
                 print("Posted...")
             except Exception as e:
                 print(e)

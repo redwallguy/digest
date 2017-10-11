@@ -25,7 +25,8 @@ def get_top_reddit():
     for subreddit in subreddits:
         for submission in subreddit.hot(limit=5):
             if submission.stickied == False:
-                postUrls[subreddit.display_name] = submission.url
+                postUrls[subreddit.display_name] = [submission.url,submission.title]
+
                 break
     for key in postUrls:
         print(postUrls[key])
