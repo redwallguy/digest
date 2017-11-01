@@ -4,3 +4,4 @@ secrets.py
 *.txt
 *.pyc
 Imgur_keys.py
+*.json
