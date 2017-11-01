@@ -2,6 +2,7 @@
 import imgurpackage
 import praw
 import re
+import datetime
 
 strToReg = ""
 
@@ -24,7 +25,7 @@ def get_top_reddit():
 
     for subreddit in subreddits:
         for submission in subreddit.hot(limit=5):
-            if submission.stickied == False:
+            if submission.stickied == False and (datetime.datetime.now() - datetime.datetime.fromtimestamp(submission.created_utc)).total_seconds() < 86400:
                 postUrls[subreddit.display_name] = [submission.url,submission.title]
 
                 break

@@ -8,6 +8,7 @@ import imgurpackage
 import re
 import errormail
 import json
+import time
 
 client = discord.Client()
 
@@ -50,6 +51,7 @@ commandText += "!unexpected: Posts top of r/unexpected\n"
 commandText += "!greentext: Posts top of r/greentext\n"
 commandText += "!youdontsurf: Posts top of r/youdontsurf\n"
 commandText += "!justneckbeardthings: Posts top of r/justneckbeardthings\n"
+commandText += "!softwaregore: Posts top of r/softwaregore\n"
 commandText += "!digest: Posts a link to the daily meme digest\n"
 commandText += "!digest(vol_no): Posts a link to Meme Digest Vol. (vol_no)\n"
 commandText += "!request: Text following !request will be sent to Dev $for consideration\n"
@@ -376,6 +378,16 @@ def get_top_reddit_justneckbeardthings():
 	print(url)
 	return url
 
+def get_top_reddit_softwaregore():
+	reddit = praw.Reddit("fbbot", user_agent="Meme Scraper by u/redwallguy")
+	subreddit = reddit.subreddit("softwaregore")
+	for submission in subreddit.hot(limit=5):
+		if submission.stickied == False:
+			url = submission.url
+			break
+	print(url)
+	return url
+
 @client.event
 async def on_ready():
 	print("Logged in as")
@@ -449,6 +461,8 @@ async def on_message(message):
 		await client.send_message(message.channel, get_top_reddit_youdontsurf())
 	if message.content.startswith("!justneckbeardthings"):
 		await client.send_message(message.channel, get_top_reddit_justneckbeardthings())
+	if message.content.startswith("!softwaregore"):
+		await client.send_message(message.channel, get_top_reddit_softwaregore())
 	if message.content in "!digest" and "!digest" in message.content:
 		await client.send_message(message.channel, imgurpackage.get_digest())
 	if message.content.startswith("!digest("):
@@ -468,5 +482,8 @@ async def on_message(message):
 			await client.send_message(message.channel,"Request acknowledged.")
 		with open("requests.txt","w") as f:
 			json.dump(request_log,f) #updates requests txt file
-
-client.run("MzMzNjM3ODY2ODQ2NTUyMDY2.DEPs2w.Bar53k76djP5OPUGf8RLZJ3aK9s")
+while True:
+        try:
+                client.run("MzMzNjM3ODY2ODQ2NTUyMDY2.DEPs2w.Bar53k76djP5OPUGf8RLZJ3aK9s")
+        except:
+                time.sleep(60)
