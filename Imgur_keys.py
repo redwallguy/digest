@@ -1,2 +1,0 @@
-client_id = 05bf953c95a26c2
-client_secret = 73ee119b68424e21f66f9acf1686c0805c7e8ada

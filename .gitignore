@@ -1,3 +1,6 @@
 .DS_Store
 praw.ini
 secrets.py
+*.txt
+*.pyc
+Imgur_keys.py
