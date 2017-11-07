@@ -17,6 +17,10 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%' \
                                        '(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
+with open("discord_keys.txt") as f:
+    token_arr = json.load(f)
+    token = token_arr["token"]
+
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -43,4 +47,4 @@ async def on_ready():
             json.dump(reset,f)
     print("Requests reset.")
 
-client.run('MzMzNjM3ODY2ODQ2NTUyMDY2.DEPs2w.Bar53k76djP5OPUGf8RLZJ3aK9s')
+client.run(token)

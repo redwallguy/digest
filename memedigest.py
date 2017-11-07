@@ -18,6 +18,10 @@ handler = logging.FileHandler(filename="discord.log", encoding="utf-8", mode="w"
 handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
 logger.addHandler(handler)
 
+with open("discord_keys.txt") as f:
+    token_arr = json.load(f)
+    token = token_arr["token"]
+
 commandText = "Commands:\n"
 commandText += "!dankmemes: Posts top of r/dankmemes\n"
 commandText += "!prequelmemes: Posts top of r/prequelmemes\n"
@@ -484,6 +488,6 @@ async def on_message(message):
 			json.dump(request_log,f) #updates requests txt file
 while True:
         try:
-                client.run("MzMzNjM3ODY2ODQ2NTUyMDY2.DEPs2w.Bar53k76djP5OPUGf8RLZJ3aK9s")
+                client.run(token)
         except:
                 time.sleep(60)
