@@ -69,16 +69,21 @@ def get_digest(vol_no = None):
                                                      "lyPhotoshoppedPicturesOfM"\
                                                      "ichaelCera")
             if vol_no is None:
+                print("no vol")
                 all_albums = imgurclient.get_account_albums("me", page=0)
                 for album in all_albums:
                     if "Meme Digest Vol." in album.title:
                         return album.link
             else:
                 title = "Meme Digest Vol. " + vol_no
-                all_albums = imgurclient.get_account_albums("me")
-                for album in all_albums:
-                    if title in album.title and album.title in title:
-                        return album.link
+                count = 0
+                while count <= int(imgurclient.get_account_album_count("me")/50):
+                    all_albums = imgurclient.get_account_albums("me", page=count)
+                    for album in all_albums:
+                        if title in album.title and album.title in title:
+                            return album.link
+                    count += 1
+                    print(count)
                 return "Sorry, that volume is not yet made."
         except imgurpython.helpers.error.ImgurClientError as e:
             print(e.error_message)
