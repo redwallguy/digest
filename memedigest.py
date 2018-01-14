@@ -87,7 +87,7 @@ async def on_message(message):
                         if str(message.author) not in lockoutLog:
                                 lockoutLog[str(message.author)] = ["md"]
                         else:
-                                lockoutLog.append("md")
+                                lockoutLog[str(message.author)].append("md")
                         with open("tempban.txt", "w") as f:
                                 json.dump(lockoutLog,f)
         if message.content in "!digest" and "!digest" in message.content:
@@ -95,7 +95,7 @@ async def on_message(message):
                 if str(message.author) not in lockoutLog:
                         lockoutLog[str(message.author)] = ["md"]
                 else:
-                        lockoutLog.append("md")
+                        lockoutLog[str(message.author)].append("md")
                 with open("tempban.txt", "w") as f:
                         json.dump(lockoutLog,f)
         if message.content.startswith("!digest("):
@@ -103,7 +103,7 @@ async def on_message(message):
                 if str(message.author) not in lockoutLog:
                         lockoutLog[str(message.author)] = ["md"]
                 else:
-                        lockoutLog.append("md")
+                        lockoutLog[str(message.author)].append("md")
                 with open("tempban.txt", "w") as f:
                         json.dump(lockoutLog,f)
         if message.content.startswith("!commands"):
@@ -112,7 +112,7 @@ async def on_message(message):
                 if str(message.author) not in lockoutLog:
                         lockoutLog[str(message.author)] = ["md"]
                 else:
-                        lockoutLog.append("md")
+                        lockoutLog[str(message.author)].append("md")
                 with open("tempban.txt", "w") as f:
                         json.dump(lockoutLog,f)
         if message.content.startswith("!request"):
@@ -131,7 +131,7 @@ async def on_message(message):
                 if str(message.author) not in lockoutLog:
                         lockoutLog[str(message.author)] = ["md"]
                 else:
-                        lockoutLog.append("md")
+                        lockoutLog[str(message.author)].append("md")
                 with open("tempban.txt", "w") as f:
                         json.dump(lockoutLog,f)
 
