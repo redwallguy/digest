@@ -74,17 +74,47 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+        with open("tempban.txt") as f:
+                lockoutLog = json.load(f)
+        if str(message.author) in lockoutLog:
+                if len(lockoutLog[str(message.author)]) == 3:
+                        return
+                elif len(lockoutLog) == 5:
+                        return
         for sub in subs:
                 if message.content.startswith("!"+sub+"!"):
                         await client.send_message(message.channel, get_top_reddit(sub))
-        
+                        if str(message.author) not in lockoutLog:
+                                lockoutLog[str(message.author)] = ["md"]
+                        else:
+                                lockoutLog.append("md")
+                        with open("tempban.txt", "w") as f:
+                                json.dump(lockoutLog,f)
         if message.content in "!digest" and "!digest" in message.content:
                 await client.send_message(message.channel, imgurpackage.get_digest())
+                if str(message.author) not in lockoutLog:
+                        lockoutLog[str(message.author)] = ["md"]
+                else:
+                        lockoutLog.append("md")
+                with open("tempban.txt", "w") as f:
+                        json.dump(lockoutLog,f)
         if message.content.startswith("!digest("):
                 await client.send_message(message.channel, imgurpackage.get_digest(digest_re.search(message.content).group()))
+                if str(message.author) not in lockoutLog:
+                        lockoutLog[str(message.author)] = ["md"]
+                else:
+                        lockoutLog.append("md")
+                with open("tempban.txt", "w") as f:
+                        json.dump(lockoutLog,f)
         if message.content.startswith("!commands"):
                 for i in commSend:
                         await client.send_message(message.channel, i)
+                if str(message.author) not in lockoutLog:
+                        lockoutLog[str(message.author)] = ["md"]
+                else:
+                        lockoutLog.append("md")
+                with open("tempban.txt", "w") as f:
+                        json.dump(lockoutLog,f)
         if message.content.startswith("!request"):
                 with open("requests.txt") as f:
                         request_log = json.load(f)
@@ -98,6 +128,12 @@ async def on_message(message):
                         await client.send_message(message.channel,"Request acknowledged.")
                 with open("requests.txt","w") as f:
                         json.dump(request_log,f) #updates requests txt file
+                if str(message.author) not in lockoutLog:
+                        lockoutLog[str(message.author)] = ["md"]
+                else:
+                        lockoutLog.append("md")
+                with open("tempban.txt", "w") as f:
+                        json.dump(lockoutLog,f)
 
 while True:
         try:
