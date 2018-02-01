@@ -1,6 +1,9 @@
 import json
+import time
 
-with open("tempban.txt", "w") as f:
-    reset = {}
-    json.dump(reset,f)
-    print("User lockout reset.")
+while True:
+    with open("tempban.txt", "w") as f:
+        reset = {}
+        json.dump(reset,f)
+        print("User lockout reset.")
+    time.sleep(15)
