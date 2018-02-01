@@ -4,17 +4,14 @@ import praw
 import re
 import datetime
 
-strToReg = ""
-
 #extracts subreddit names
 with open("Meme_subs_compact.txt") as f:
-    for line in f:
-        strToReg += line
-subs = re.split(r"\|", strToReg)
+    subs_dict = json.load(f)
+subs = subs_dict["subs"]
 for sub in subs:
     sub = sub.lower()
 
-def get_top_reddit():
+def get_top_reddit(subs):
     reddit = praw.Reddit('fbbot', user_agent='Meme Scraper by u/redwallguy')
 
     subreddits = []
@@ -33,4 +30,4 @@ def get_top_reddit():
         print(postUrls[key])
     return postUrls
 
-imgurpackage.postToImgur(get_top_reddit())
+imgurpackage.postToImgur(get_top_reddit(subs))
