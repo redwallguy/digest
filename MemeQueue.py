@@ -31,9 +31,9 @@ async def on_message(message):
             queue_arr[server.id] = [{},"Enabled"]
         if queue_arr[server.id][1] == "Enabled":
             for user in message.channel.server.members:
-                if user.name not in queue_arr[server.id][0]:
-                    queue_arr[server.id][0][user.name] = [[],"Enabled"]
-                if queue_arr[server.id][0][user.name][1] == "Enabled" and user != message.author:
+                if user.id not in queue_arr[server.id][0]:
+                    queue_arr[server.id][0][user.id] = [[],"Enabled"]
+                if queue_arr[server.id][0][user.id][1] == "Enabled" and user != message.author:
                     userInVoice = False
                     for channel in server.channels:
                         if user in channel.voice_members:
@@ -43,7 +43,13 @@ async def on_message(message):
                         if not user.bot:
                             for embed in message.embeds:
                                 print(embed["url"])
-                                queue_arr[server.id][0][user.name][0].append(embed["url"])
+                                if len(queue_arr[server.id][0][user.id][0]) < 500:
+                                    queue_arr[server.id][0][user.id][0].append(embed["url"])
+                                else:
+                                    queue_arr[server.id][0][user.id][0].reverse()
+                                    queue_arr[server.id][0][user.id][0].pop()
+                                    queue_arr[server.id][0][user.id][0].reverse()
+                                    queue_arr[server.id][0][user.id][0].append(embed["url"])
                             print("Ya missed it, " + user.name + "!")
                             with open("queue.txt", "w") as f:
                                 json.dump(queue_arr,f)
@@ -53,9 +59,9 @@ async def on_message(message):
         server = message.channel.server
         if server.id not in queue_arr:
             queue_arr[server.id] = [{},"Enabled"]
-        if message.author.name not in queue_arr[server.id][0]:
-            queue_arr[server.id][0][message.author.name] = [[],"Enabled"]
-        queue_arr[server.id][0][message.author.name][1] = "Enabled"
+        if message.author.id not in queue_arr[server.id][0]:
+            queue_arr[server.id][0][message.author.id] = [[],"Enabled"]
+        queue_arr[server.id][0][message.author.id][1] = "Enabled"
         await client.send_message(message.channel, "Meme queue enabled for " + message.author.name)
         with open("queue.txt", "w") as f:
             json.dump(queue_arr,f)
@@ -65,9 +71,9 @@ async def on_message(message):
         server = message.channel.server
         if server.id not in queue_arr:
             queue_arr[server.id] = [{},"Enabled"]
-        if message.author.name not in queue_arr[server.id][0]:
-            queue_arr[server.id][0][message.author.name] = [[],"Enabled"]
-        queue_arr[server.id][0][message.author.name][1] = "Disabled"
+        if message.author.id not in queue_arr[server.id][0]:
+            queue_arr[server.id][0][message.author.id] = [[],"Enabled"]
+        queue_arr[server.id][0][message.author.id][1] = "Disabled"
         await client.send_message(message.channel, "Meme queue Disabled for " + message.author.name)
         with open("queue.txt", "w") as f:
             json.dump(queue_arr,f)
@@ -103,15 +109,15 @@ async def on_message(message):
         server = message.channel.server
         if server.id not in queue_arr:
             queue_arr[server.id] = [{},"Enabled"]
-        if message.author.name not in queue_arr[server.id][0]:
-            queue_arr[server.id][0][message.author.name] = [[],"Enabled"]
-        if queue_arr[server.id][0][message.author.name][1] == "Enabled":
-            if queue_arr[server.id][0][message.author.name][0] == []:
+        if message.author.id not in queue_arr[server.id][0]:
+            queue_arr[server.id][0][message.author.id] = [[],"Enabled"]
+        if queue_arr[server.id][0][message.author.id][1] == "Enabled":
+            if queue_arr[server.id][0][message.author.id][0] == []:
                 await client.send_message(message.channel, "Queue empty. You're all caught up!")
             else:
-                queue_arr[server.id][0][message.author.name][0].reverse()
-                memePop = queue_arr[server.id][0][message.author.name][0].pop()
-                queue_arr[server.id][0][message.author.name][0].reverse()
+                queue_arr[server.id][0][message.author.id][0].reverse()
+                memePop = queue_arr[server.id][0][message.author.id][0].pop()
+                queue_arr[server.id][0][message.author.id][0].reverse()
                 await client.send_message(message.author, memePop)
                 with open("queue.txt", "w") as f:
                     json.dump(queue_arr,f)
@@ -121,16 +127,16 @@ async def on_message(message):
         server = message.channel.server
         if server.id not in queue_arr:
             queue_arr[server.id] = [{},"Enabled"]
-        if message.author.name not in queue_arr[server.id][0]:
-            queue_arr[server.id][0][message.author.name] = [[],"Enabled"]
-        if queue_arr[server.id][0][message.author.name][1] == "Enabled":
-            if queue_arr[server.id][0][message.author.name][0] == []:
+        if message.author.id not in queue_arr[server.id][0]:
+            queue_arr[server.id][0][message.author.id] = [[],"Enabled"]
+        if queue_arr[server.id][0][message.author.id][1] == "Enabled":
+            if queue_arr[server.id][0][message.author.id][0] == []:
                 await client.send_message(message.channel, "Queue empty. You're all caught up!")
             else:
                 memeStr = ""
-                for meme in queue_arr[server.id][0][message.author.name][0]:
+                for meme in queue_arr[server.id][0][message.author.id][0]:
                     memeStr += meme + "\n"
-                queue_arr[server.id][0][message.author.name][0] = []
+                queue_arr[server.id][0][message.author.id][0] = []
                 await client.send_message(message.author, memeStr)
                 with open("queue.txt", "w") as f:
                     json.dump(queue_arr,f)
@@ -140,13 +146,13 @@ async def on_message(message):
         server = message.channel.server
         if server.id not in queue_arr:
             queue_arr[server.id] = [{},"Enabled"]
-        if message.author.name not in queue_arr[server.id][0]:
-            queue_arr[server.id][0][message.author.name] = [[],"Enabled"]
-        if queue_arr[server.id][0][message.author.name][1] == "Enabled":
-            if queue_arr[server.id][0][message.author.name][0] == []:
+        if message.author.id not in queue_arr[server.id][0]:
+            queue_arr[server.id][0][message.author.id] = [[],"Enabled"]
+        if queue_arr[server.id][0][message.author.id][1] == "Enabled":
+            if queue_arr[server.id][0][message.author.id][0] == []:
                 pass
             else:
-                queue_arr[server.id][0][message.author.name][0] = []
+                queue_arr[server.id][0][message.author.id][0] = []
                 with open("queue.txt", "w") as f:
                     json.dump(queue_arr,f)
     if message.content.startswith("!MQCommands"):
